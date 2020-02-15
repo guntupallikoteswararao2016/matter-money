@@ -25,7 +25,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
-
 app.listen(PORT,() => console.log(`Listening on ${ PORT }`));
 
 
@@ -98,6 +97,32 @@ db.initialize(dbName, collectionName, function (dbCollection) { // successCallba
         });
      });
   });
+
+}, function (err) { // failureCallback
+  throw (err);
+});
+
+db.initialize('users', 'user-list', function (dbCollection) {
+
+  app.get("/api/username/:name", (request, response) => {
+     const name = request.params.name;
+     console.log(">>name",name);
+     
+     dbCollection.findOne({ username: name }, (error, result) => {
+        if (error) throw error;
+        response.json(result||[]);
+     });
+  });
+
+  app.post("/api/createuser/",(request, response)=>{
+    const data = request.body;
+    console.log(">>post>>data",data);
+    dbCollection.insertOne(data, (error, result) => {
+      if (error) throw error;
+      return response.json([{status:'lok'}]);
+    })
+  })
+//
 
 }, function (err) { // failureCallback
   throw (err);
