@@ -2,13 +2,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-const fetchData = () => {
-
-  fetch('/api/items').then(function (a) {
-    console.log("cllla>>.", a.re)
-  })
-}
-
 class App extends Component {
   state = {
     users: []
@@ -33,8 +26,7 @@ class App extends Component {
         <p>hostname::{window.location.hostname}</p>
       {
         this.state.users.map(({ pin, name }) => <div>
-          <p>Name:{name}</p>
-          <p>pin{pin}</p>
+          <span>{name} -{pin}</span>
         </div>)
       }
     </div>);
