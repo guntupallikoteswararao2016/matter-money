@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const db = require("./db");
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const router = express.Router();
@@ -25,105 +24,125 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
-app.listen(PORT,() => console.log(`Listening on ${ PORT }`));
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+const profileRoutes = require("./Api/routes/profile");
+app.use("/profile", profileRoutes);
+
+
 
 
 console.log("EE::s1:2:---------------");
-
+/*
 db.initialize(dbName, collectionName, function (dbCollection) { // successCallback
-  // get all items
-  dbCollection.find().toArray(function (err, result) {
-     if (err) throw err;
-     console.log(result);
+   // get all items
+   dbCollection.find().toArray(function (err, result) {
+      if (err) throw err;
+      console.log(result);
 
-     // << return response to client >>
-  });
+      // << return response to client >>
+   });
 
-  // << db CRUD routes >>
-  app.post("/itemss", (request, response) => {
-     const item = request.body;
-     dbCollection.insertOne(item, (error, result) => { // callback of insertOne
-        if (error) throw error;
-        // return updated list
-        dbCollection.find().toArray((_error, _result) => { // callback of find
-           if (_error) throw _error;
-           response.json(_result);
-        });
-     });
-  });
+   // << db CRUD routes >>
+   app.post("/itemss", (request, response) => {
+      const item = request.body;
+      dbCollection.insertOne(item, (error, result) => { // callback of insertOne
+         if (error) throw error;
+         // return updated list
+         dbCollection.find().toArray((_error, _result) => { // callback of find
+            if (_error) throw _error;
+            response.json(_result);
+         });
+      });
+   });
 
-  app.get("/api/items/:id", (request, response) => {
-     const itemId = request.params.id;
+   app.get("/api/items/:id", (request, response) => {
+      const itemId = request.params.id;
 
-     dbCollection.findOne({ id: itemId }, (error, result) => {
-        if (error) throw error;
-        // return item
-        response.json(result);
-     });
-  });
+      dbCollection.findOne({ id: itemId }, (error, result) => {
+         if (error) throw error;
+         // return item
+         response.json(result);
+      });
+   });
 
-  app.get("/api/items", (request, response) => {
-     dbCollection.find().toArray((error, result) => {
-        if (error) throw error;
-        response.json(result);
-     });
-  });
 
-  app.put("/items/:id", (request, response) => {
-     const itemId = request.params.id;
-     const item = request.body;
-     console.log("Editing item: ", itemId, " to be ", item);
+   app.put("/items/:id", (request, response) => {
+      const itemId = request.params.id;
+      const item = request.body;
+      console.log("Editing item: ", itemId, " to be ", item);
 
-     dbCollection.updateOne({ id: itemId }, { $set: item }, (error, result) => {
-        if (error) throw error;
-        // send back entire updated list, to make sure frontend data is up-to-date
-        dbCollection.find().toArray(function (_error, _result) {
-           if (_error) throw _error;
-           response.json(_result);
-        });
-     });
-  });
+      dbCollection.updateOne({ id: itemId }, { $set: item }, (error, result) => {
+         if (error) throw error;
+         // send back entire updated list, to make sure frontend data is up-to-date
+         dbCollection.find().toArray(function (_error, _result) {
+            if (_error) throw _error;
+            response.json(_result);
+         });
+      });
+   });
 
-  app.delete("/items/:id", (request, response) => {
-     const itemId = request.params.id;
-     console.log("Delete item with id: ", itemId);
+   app.delete("/items/:id", (request, response) => {
+      const itemId = request.params.id;
+      console.log("Delete item with id: ", itemId);
 
-     dbCollection.deleteOne({ id: itemId }, function (error, result) {
-        if (error) throw error;
-        // send back entire updated list after successful request
-        dbCollection.find().toArray(function (_error, _result) {
-           if (_error) throw _error;
-           response.json(_result);
-        });
-     });
-  });
+      dbCollection.deleteOne({ id: itemId }, function (error, result) {
+         if (error) throw error;
+         // send back entire updated list after successful request
+         dbCollection.find().toArray(function (_error, _result) {
+            if (_error) throw _error;
+            response.json(_result);
+         });
+      });
+   });
 
 }, function (err) { // failureCallback
-  throw (err);
+   throw (err);
 });
 
-db.initialize('users', 'user-list', function (dbCollection) {
 
-  app.get("/api/username/:name", (request, response) => {
-     const name = request.params.name;
-     console.log(">>name",name);
-     
-     dbCollection.findOne({ username: name }, (error, result) => {
-        if (error) throw error;
-        response.json(result||[]);
-     });
-  });
+app.get("/api/items", (request, response) => {
 
-  app.post("/api/createuser/",(request, response)=>{
-    const data = request.body;
-    console.log(">>post>>data",data);
-    dbCollection.insertOne(data, (error, result) => {
-      if (error) throw error;
-      return response.json([{status:'lok'}]);
-    })
-  })
-//
+   db.initialize(dbName, collectionName, function (dbCollection) {
+      dbCollection.find().toArray((error, result) => {
+         if (error) throw error;
+         response.json(result);
+         dbCollection.close();
+      });
+   }, function (err) { // failureCallback
+      throw (err);
+   });
 
-}, function (err) { // failureCallback
-  throw (err);
 });
+
+app.get("/api/username/:name", (request, response) => {
+   const name = request.params.name;
+   console.log(">>name<<", name);
+
+   db.initialize('users', 'user-list', function (dbCollection) {
+      dbCollection.findOne({ username: name }, (error, result) => {
+         if (error) throw error;
+         response.json(result || []);
+         dbCollection.close();
+      });
+   }, function (err) { // failureCallback
+      throw (err);
+   });
+
+
+});
+
+app.post("/api/createuser/", (request, response) => {
+   const data = request.body;
+   console.log(">>post>>data", data);
+   db.initialize('users', 'user-list', function (dbCollection) {
+      dbCollection.insertOne(data, (error, result) => {
+         if (error) throw error;
+         return response.json([{ status: 'lok' }]);
+      })
+   }, function (err) { // failureCallback
+      throw (err);
+   });
+
+});
+
+*/
