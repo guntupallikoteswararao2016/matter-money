@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 class Home extends React.Component {
     state = {
         users: []
@@ -25,7 +27,7 @@ class Home extends React.Component {
              {   
                 this.state.users.map(({id, firstname, surname }) => <div key={id}>
                     <span>{firstname} -{surname}-
-                    <a href={`/profile/${id}`}>view profile</a>
+                    <Link to={`/profile/${id}`}>view profile</Link>
                     </span>
                 </div>)
             }

@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 class Profile extends React.Component {
     state = {
         profile: []
@@ -33,6 +35,8 @@ class Profile extends React.Component {
                         <p>job: {this.state.profile.job} </p>
                    </div>
                 }
+                <Link to="/"> ((((((Back))))</Link>
+
             </div>
         )
     }
