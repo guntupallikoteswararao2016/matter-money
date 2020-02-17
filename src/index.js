@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Route, BrowserRouter } from 'react-router-dom'
-import Profile from './profile';
-import Home from './home';
+import Profile from './router/profile';
+import Home from './router/home';
 
 const UiRoute = () => {
 
