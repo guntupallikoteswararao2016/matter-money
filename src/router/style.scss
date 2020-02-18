@@ -1,0 +1,13 @@
+.profiles-container{
+
+    width: 800px;
+    height: 500px;
+    border: 1px solid red;
+
+    .profile-tiles{
+        display: flex;
+        flex-flow: column wrap;
+        height: 100%;
+    }
+
+}

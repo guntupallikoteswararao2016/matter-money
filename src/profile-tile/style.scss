@@ -5,10 +5,17 @@
     padding: 12px;
     display: inline-flex;
     margin-bottom: 20px;
-    
+    margin-left: 25px;
+    font: 12px arial;
+        
     .avator img{
         width: 150px;
         height: 170px;
         border: 1px solid black;
     }
+
+    .profile-information{
+        padding-left: 20px;
+    }
+   
 }

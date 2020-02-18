@@ -1,7 +1,9 @@
 import React,{useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import Fetch from '../shared/services/fetch-service';
-import Profile  from '../profile'
+import Profile  from '../profile';
+import './style.scss';
+
 export default () => {
   
     const [users, updateUsers] = useState([]);
@@ -20,12 +22,13 @@ export default () => {
     }, [])
 
     return (
-        <div>
+        <div className="profiles-container">
           <header>Profiles</header>
-
-           {
-             users.map(item=><Profile  {...item}/>)
-           }
+          <div className="profile-tiles">
+            {
+              users.map(item=><Profile  {...item}/>)
+            }
+           </div>
         </div>
     )
 }

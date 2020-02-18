@@ -5,6 +5,7 @@ import { Route, BrowserRouter } from 'react-router-dom'
 import Profile from './router/profile';
 import Home from './router/home';
 import Header from './header';
+import Banner from './banner'
 import Footer from './footer'
 
 const UiRoute = () => {
@@ -13,6 +14,7 @@ const UiRoute = () => {
     <BrowserRouter>
       <div>
         <Header />
+        <Banner />
         <Route exact path="/" component={Home} />
         <Route exact path="/profile/:id" component={Profile} />
         <Footer/>
