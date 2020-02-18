@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import Fetch from '../shared/services/fetch-service';
-import Profile  from '../profile'
 export default () => {
   
     const [users, updateUsers] = useState([]);
@@ -21,11 +20,14 @@ export default () => {
 
     return (
         <div>
-          <header>Profiles</header>
-
-           {
-             users.map(item=><Profile  {...item}/>)
-           }
+           <img src="./assests/favicon-194x194.png" />
+         {   
+            users.map(({id, firstname, surname }) => <div key={id}>
+                <span>{firstname} -{surname}-
+                <Link to={`/profile/${id}`}>view profile</Link>
+                </span>
+            </div>)
+        }
         </div>
     )
 }

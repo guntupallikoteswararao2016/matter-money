@@ -1,0 +1,14 @@
+.profile-tile{
+    border: 1px solid #d7d7d7;
+    background-color: #e5e4e4;
+    width: 300px;
+    padding: 12px;
+    display: inline-flex;
+    margin-bottom: 20px;
+    
+    .avator img{
+        width: 150px;
+        height: 170px;
+        border: 1px solid black;
+    }
+}
