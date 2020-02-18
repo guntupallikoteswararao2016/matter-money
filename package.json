@@ -2,7 +2,7 @@
   "name": "matter-money",
   "version": "0.3.0",
   "homepage": "https://matter-money-real.herokuapp.com/",
-  "description": "matter-moneyis a  Mern stack app using Express 4",
+  "description": "matter-moneyis a Mern stack app using Express 4",
   "engines": {
     "node": "12.x"
   },
@@ -26,12 +26,12 @@
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4",
-    "request": "^2.81.0",
-    "tape": "^4.7.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "react-scripts": "latest"
+    "nodemon": "^1.19.4",
+    "react-scripts": "latest",
+    "request": "^2.81.0",
+    "tape": "^4.7.0"
   },
   "repository": {
     "type": "git",

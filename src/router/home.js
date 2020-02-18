@@ -1,38 +1,33 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import Fetch from '../shared/services/fetch-service';
+export default () => {
+  
+    const [users, updateUsers] = useState([]);
+  
+    useEffect(() => {
+  
+      const init = async () => {
+        const datas = await Fetch('profile');
+        const family = await datas.json();
+  
+        updateUsers( family);
+      }
 
-class Home extends React.Component {
-    state = {
-        users: []
-    }
-    
-    componentDidMount() {
-        console.log("res>>>home::profile");
+      init();
 
-    fetch('/profile')
-        .then(res => {
-        // console.log("res>>>home::profile",res);
-        return res.json()
-        })
-        .then(users => {
-        console.log(users);
-        this.setState({ users })
-        });
-    }
-    
-    render() {
+    }, [])
 
-        return (
-            <div>
-             {   
-                this.state.users.map(({id, firstname, surname }) => <div key={id}>
-                    <span>{firstname} -{surname}-
-                    <Link to={`/profile/${id}`}>view profile</Link>
-                    </span>
-                </div>)
-            }
-            </div>
-        )
-    }
+    return (
+        <div>
+           <img src="/favicon-194x194.png" />
+         {   
+            users.map(({id, firstname, surname }) => <div key={id}>
+                <span>{firstname} -{surname}-
+                <Link to={`/profile/${id}`}>view profile</Link>
+                </span>
+            </div>)
+        }
+        </div>
+    )
 }
-export default Home;
