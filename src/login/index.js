@@ -17,10 +17,6 @@ export default () => {
                     body: JSON.stringify({id:textInput.current.value}) 
                 });
                 const loginResp = await datas.json();
-                debugger;
-                if(loginResp.isLogin){
-                     <Redirect  to="/profile/:id" />
-                }
                 console.log("Login",loginResp.isLogin);
             }
         }>Submit</button>
