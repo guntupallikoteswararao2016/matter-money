@@ -10,8 +10,7 @@ export default async (url, options={}) =>{
         ...defaultHeaders,
         ...options
     };
-
-    let data = await fetch(url,fetchOptions);
+    let data = await fetch(url,fetchOptions.headers);
     return data;
 
 }

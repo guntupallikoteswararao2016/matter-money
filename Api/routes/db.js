@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
 
-const uri = "mongodb+srv://sivasankar9:raknas@9@cluster0-fnz8t.mongodb.net/test?retryWrites=true&w=majority";
-
+const uri = `mongodb+srv://${process.env.USER_NAME_DB}:${process.env.PASSWORD_DB}@cluster0-fnz8t.mongodb.net/test?retryWrites=true&w=majority`;
+console.log(">>process_Db_pwd_1",process.env.PASSWORD_DB)
 const dbConnectionUrl = uri;
 
 function initialize(

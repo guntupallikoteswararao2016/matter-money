@@ -1,2 +1,2 @@
 import React from 'react';
-export default ()=><div>Login  About Us Register Contact</div>
+export default ()=><div>Home | About Us | Register  | Contact</div>
