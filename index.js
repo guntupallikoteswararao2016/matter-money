@@ -7,8 +7,8 @@ const logger = require('morgan');
 const router = express.Router();
 const app = express();
 const jwt = require('jsonwebtoken');
-const profileRoutes = require("./api/routes/profile");
-const loginRoutes = require("./api/routes/login");
+const profileRoutes = require("./apis/routes/profile");
+const loginRoutes = require("./apis/routes/login");
 
 //<<PORT>>
 const PORT = process.env.PORT || 5000;
