@@ -18,7 +18,7 @@ router.post("/", (req, res) => {
             if(result){
                 const accessToken = generateAccessToken(id);
                 console.log(">>genereate:Tocken<<", accessToken);
-                res.send({"isLogin" : true});
+                res.send({"isLogin" : true, 'accessToken':accessToken});
             }else{
                 
                 res.send({"isLogin" : false});
@@ -80,7 +80,7 @@ router.get('/posts', verifyToken, (req, res) => {
             dbCollection.find().toArray(function (err, result) {
                 if (err) throw err;
                 res.json(result || []);
-                console.log(res.send);
+                console.log("posts",result);
             });
         }, function (err) {
             throw (err);
@@ -93,6 +93,7 @@ router.get('/posts', verifyToken, (req, res) => {
 
 function verifyToken(req, res, next) {
     const bearerHeader = req.headers['authorization'];
+    console.log("authorization", bearerHeader)
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];

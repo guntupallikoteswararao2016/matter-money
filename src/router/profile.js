@@ -8,7 +8,6 @@ class Profile extends React.Component {
     
       componentDidMount() {
         const { id } = this.props.match.params;
-        // debugger;
         fetch(`/profile/${id}`)
           .then(res => {
             console.log(res);
@@ -22,7 +21,6 @@ class Profile extends React.Component {
   
 
     render() {
-        debugger;
         return (
             <div>
                  <a href={'/'}>Back</a>
