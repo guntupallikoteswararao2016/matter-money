@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import Fetch from '../shared/services/fetch-service';
-
 
 export default (props) => {
 
@@ -9,11 +7,11 @@ export default (props) => {
         console.log("Local store age",localStorage.getItem('login'));
         if(localStorage.getItem('login')){
             
-            props.history.push('/home');
+            props.history.push('/dashboard');
 
         }
 
-    }, []);
+    }, [props.history]);
 
     let textInput = React.createRef();
 
@@ -32,7 +30,7 @@ export default (props) => {
                 });
                 const loginResp = await datas.json();
                 if (loginResp.isLogin) {
-                    props.history.push('/home');
+                    props.history.push('/dashboard');
                     localStorage.setItem("auth", loginResp.accessToken);
                     localStorage.setItem("login", loginResp.isLogin);
                 } else {

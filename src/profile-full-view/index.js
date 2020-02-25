@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-class Profile extends React.Component {
+class ProfileFullView extends React.Component {
     state = {
         profile: []
       }
@@ -23,7 +23,6 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
-                 <a href={'/'}>Back</a>
                 <h1>Profile Preview</h1>
                 {
                    <div>
@@ -39,4 +38,4 @@ class Profile extends React.Component {
         )
     }
 }
-export default Profile
+export default ProfileFullView

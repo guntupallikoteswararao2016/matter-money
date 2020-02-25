@@ -1,13 +1,19 @@
 
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Route, BrowserRouter } from 'react-router-dom'
-import Profile from './router/profile';
-import Home from './router/home';
+import ProfileFullView from './profile-full-view';
+import DashBoard from './dash-board';
 import Header from './header';
 import Banner from './banner'
 import Login from './login'
 import Footer from './footer'
+import rootReducer from './store-room';
+
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+
+const store = createStore(rootReducer);
 
 const UiRoute = () => {
 
@@ -15,8 +21,8 @@ const UiRoute = () => {
     <BrowserRouter>
       <div>
         <Header />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/profile/:id" component={Profile} />
+        <Route exact path="/dashboard" component={DashBoard} />
+        <Route exact path="/profile/:id" component={ProfileFullView} />
         <Route exact path="/" component={Login} />
         <Footer/>
       </div>
@@ -29,9 +35,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="jumbotron text-center">
+      <Provider store={store}>
         <UiRoute />
-      </div>);
+      </Provider>);
   }
 
 }

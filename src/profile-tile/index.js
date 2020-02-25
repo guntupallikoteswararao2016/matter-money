@@ -6,7 +6,7 @@ export default ({ id, firstname, surname }) => {
     return (
         <div className="profile-tile">
             <div className="avator">
-                <img src="../../assests/men.jpg" />
+                <img alt="avator" src="../../assests/men.jpg" />
             </div>
             <div className="profile-information">
                 <p>Name:{firstname}</p>

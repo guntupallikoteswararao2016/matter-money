@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Fetch from '../shared/services/fetch-service';
 import Profile from '../profile';
 import './style.scss';
+import { connect } from 'react-redux';
+import { addTodo } from './actions';
 
-export default (props) => {
+const DashBoard =  (props) => {
 
   const [users, updateUsers] = useState([]);
 
@@ -30,11 +31,15 @@ export default (props) => {
 
     }
 
-  }, [])
+  }, [props.history])
 
   return (
     <div className="profiles-container">
       <header>Profiles</header>
+    <p>{JSON.stringify(props.profile, null, 2)}</p>
+    <p>todos{JSON.stringify(props.header, null, 2)}</p>
+
+      <button onClick={() => props.toggleTodo('adash')}>##GO</button>
       <div className="profile-tiles">
         {
           users.map(item => <Profile key={item.id} {...item} />)
@@ -43,3 +48,17 @@ export default (props) => {
     </div>
   )
 }
+
+const mapStateToProps = state => ({
+    profile: state.profile.profiles,
+    header: state.header.todos
+})
+
+const mapDispatchToProps = dispatch => ({
+  toggleTodo: id => dispatch(addTodo(id))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DashBoard)

@@ -1,11 +1,35 @@
 import React from 'react';
-const UserInfo = ()=>{
+import { connect } from 'react-redux';
+import { addTodo } from './actions';
+
+
+const UserInfo = () => {
 
     return (<span>
-       Welcome userName:
+        Welcome userName:
        {
-           console.log(">>>>***<M<<<<<<")
-       }
+            console.log(">>>>***<M<<<<<<")
+        }
     </span>)
 }
-export default ()=><div>Home | About Us | Register  | Contact| {<UserInfo/>}</div>
+const Header = (props) => (<div>
+    Home | About Us | Register  | Contact| {<UserInfo />}
+    <p>{JSON.stringify(props.todos, null, 2)}</p>
+    <button onClick={() => props.toggleTodo('header')}>##GO</button>
+
+</div>)
+
+
+const mapStateToProps = state => ({
+    todos: state.header.todos
+})
+
+const mapDispatchToProps = dispatch => ({
+    toggleTodo: id => dispatch(addTodo(id))
+})
+
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header)
