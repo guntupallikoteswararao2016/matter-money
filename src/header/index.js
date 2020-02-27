@@ -1,21 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from './actions';
+import {Link} from 'react-router-dom';
+import Avator from '../account'
+import "./style.scss";
 
-
-const UserInfo = () => {
-
-    return (<span>
-        Welcome userName:
-       {
-            console.log(">>>>***<M<<<<<<")
-        }
-    </span>)
-}
 const Header = (props) => (<div>
-    Home | About Us | Register  | Contact| {<UserInfo />}
-    <p>{JSON.stringify(props.todos, null, 2)}</p>
-    <button onClick={() => props.toggleTodo('header')}>##GO</button>
+    <ul>
+        <li><Link to="/"> Home</Link></li>
+        <li>About Us</li>
+        <li><Link to="/register"> Register</Link></li>
+        <li>Contact</li>
+        <li>{<Avator />}</li>
+    </ul>
 
 </div>)
 
@@ -32,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Header)
+)(Header);

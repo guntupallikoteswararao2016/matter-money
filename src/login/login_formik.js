@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
+import * as EmailValidator from "email-validator";
 import * as Yup from "yup";
 const ValidatedLoginForm = () => (
   <Formik
@@ -56,21 +57,11 @@ const ValidatedLoginForm = () => (
             onBlur={handleBlur}
             className={errors.password && touched.password && "error"}
           />
-          <label htmlFor="email">Retype your password</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="Retype your password"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={errors.password && touched.password && "error"}
-          />
           {errors.password && touched.password && (
             <div className="input-feedback">{errors.password}</div>
           )}
           <button type="submit" disabled={isSubmitting}>
-            Register
+            Login
           </button>
         </form>
       );

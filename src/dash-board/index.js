@@ -36,10 +36,6 @@ const DashBoard =  (props) => {
   return (
     <div className="profiles-container">
       <header>Profiles</header>
-    <p>{JSON.stringify(props.profile, null, 2)}</p>
-    <p>todos{JSON.stringify(props.header, null, 2)}</p>
-
-      <button onClick={() => props.toggleTodo('adash')}>##GO</button>
       <div className="profile-tiles">
         {
           users.map(item => <Profile key={item.id} {...item} />)

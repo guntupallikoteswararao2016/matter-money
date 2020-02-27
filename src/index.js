@@ -9,6 +9,7 @@ import Banner from './banner'
 import Login from './login'
 import Footer from './footer'
 import rootReducer from './store-room';
+import Register from './registration'
 
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
@@ -24,6 +25,7 @@ const UiRoute = () => {
         <Route exact path="/dashboard" component={DashBoard} />
         <Route exact path="/profile/:id" component={ProfileFullView} />
         <Route exact path="/" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Footer/>
       </div>
     </BrowserRouter >

@@ -1,0 +1,18 @@
+ul {
+    display: block;
+    list-style-type: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+li{
+    display: inline;
+    border-left: 1px solid #979797;
+    padding: 0px 25px;
+}
+li:first-child{
+    border: none;
+}

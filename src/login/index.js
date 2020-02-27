@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import Fetch from '../shared/services/fetch-service';
+// import ValidatedLoginForm from "./login_formik";
+import './style.css';
 
 export default (props) => {
 
@@ -16,7 +18,10 @@ export default (props) => {
     let textInput = React.createRef();
 
 
-    return <div>Login Details
+    return <div>
+        {/* <ValidatedLoginForm /> */}
+        <label htmlFor="login">Login Details</label>
+        
 
     <input type="text" ref={textInput} />
         <button onClick={
